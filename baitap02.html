@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập 2</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h2>Đăng ký tài khoản</h2>
+
+<form id="form">
+    <label>Tên:</label><br>
+    <input type="text" id="name"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="email"><br><br>
+
+    <label>Mật khẩu:</label><br>
+    <input type="password" id="password"><br><br>
+
+    <label>
+        <input type="checkbox" id="agree">
+        Đồng ý điều khoản
+    </label><br><br>
+
+    <button type="submit">Đăng ký</button>
+</form>
+
+<p id="msg"></p>
+
+<script>
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("password").value;
+    let agree = document.getElementById("agree").checked;
+
+    if (pass.length < 8 || !/[A-Z]/.test(pass) || !/[a-z]/.test(pass) || !/[0-9]/.test(pass)) {
+        msg.innerHTML = "Mật khẩu không hợp lệ!";
+        return;
+    }
+
+    if (!agree) {
+        msg.innerHTML = "Bạn phải đồng ý điều khoản!";
+        return;
+    }
+
+    localStorage.setItem("user", JSON.stringify({name, email}));
+    msg.innerHTML = "Đăng ký thành công!";
+});
+</script>
+
+</body>
+</html>

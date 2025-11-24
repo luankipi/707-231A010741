@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập 1</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h2>Bài tập 1 – Danh sách sản phẩm</h2>
+
+<input type="text" id="search" placeholder="Nhập tên sản phẩm...">
+<button onclick="timKiem()">Tìm</button>
+
+<ul id="list"></ul>
+
+<script>
+const products = ["Iphone 15", "Samsung S24", "Oppo A93", "Laptop Acer", "Chuột Logitech"];
+
+function hienThi() {
+    const list = document.getElementById("list");
+    list.innerHTML = "";
+    products.forEach(p => list.innerHTML += `<li>${p}</li>`);
+}
+hienThi();
+
+function timKiem() {
+    const keyword = document.getElementById("search").value.toLowerCase();
+    const result = products.filter(p => p.toLowerCase().includes(keyword));
+
+    const list = document.getElementById("list");
+    list.innerHTML = "";
+
+    if (result.length === 0) {
+        list.innerHTML = "<li>Không tìm thấy sản phẩm</li>";
+    } else {
+        result.forEach(p => list.innerHTML += `<li>${p}</li>`);
+    }
+}
+</script>
+
+</body>
+</html>
